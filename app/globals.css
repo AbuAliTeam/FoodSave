@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Импорт шрифтов Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Базовые стили для всего приложения */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-neutral-50 text-neutral-900;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  
+  /* Кастомные стили для скроллбара */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400;
+  }
+  
+  /* Стили для выделения текста */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+}
+
+/* Компонентные стили */
+@layer components {
+  /* Стили для кнопок */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-500 text-white hover:bg-secondary-600 focus:ring-secondary-500;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-neutral-300 text-neutral-700 hover:bg-neutral-50 focus:ring-neutral-500;
+  }
+  
+  /* Стили для карточек товаров */
+  .product-card {
+    @apply bg-white rounded-xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-large hover:-translate-y-1;
+  }
+  
+  .product-card-image {
+    @apply w-full h-48 object-cover bg-neutral-100;
+  }
+  
+  .product-card-content {
+    @apply p-4;
+  }
+  
+  .product-card-title {
+    @apply text-lg font-semibold text-neutral-900 mb-2 line-clamp-2;
+  }
+  
+  .product-card-price {
+    @apply text-2xl font-bold text-primary-600;
+  }
+  
+  .product-card-original-price {
+    @apply text-sm text-neutral-500 line-through;
+  }
+  
+  .product-card-discount {
+    @apply inline-block bg-secondary-500 text-white text-xs font-semibold px-2 py-1 rounded-full;
+  }
+  
+  /* Стили для бейджей скидок */
+  .discount-badge {
+    @apply absolute top-3 right-3 bg-secondary-500 text-white text-xs font-bold px-2 py-1 rounded-full z-10;
+  }
+  
+  .urgent-badge {
+    @apply absolute top-3 left-3 bg-accent-500 text-white text-xs font-bold px-2 py-1 rounded-full z-10;
+  }
+  
+  /* Стили для поисковой строки */
+  .search-input {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  /* Стили для фильтров */
+  .filter-chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer;
+  }
+  
+  .filter-chip-active {
+    @apply bg-primary-100 text-primary-700 border border-primary-200;
+  }
+  
+  .filter-chip-inactive {
+    @apply bg-neutral-100 text-neutral-600 border border-neutral-200 hover:bg-neutral-200;
+  }
+  
+  /* Стили для навигации */
+  .nav-link {
+    @apply px-3 py-2 text-neutral-600 hover:text-primary-600 transition-colors duration-200;
+  }
+  
+  .nav-link-active {
+    @apply text-primary-600 font-medium;
+  }
+  
+  /* Стили для модальных окон */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+  }
+  
+  .modal-content {
+    @apply bg-white rounded-xl shadow-large max-w-md w-full max-h-[90vh] overflow-y-auto;
+  }
+  
+  /* Стили для уведомлений */
+  .toast-success {
+    @apply bg-green-500 text-white;
+  }
+  
+  .toast-error {
+    @apply bg-red-500 text-white;
+  }
+  
+  .toast-warning {
+    @apply bg-yellow-500 text-white;
+  }
+  
+  /* Стили для карты */
+  .map-container {
+    @apply w-full h-96 rounded-xl overflow-hidden shadow-soft;
+  }
+  
+  /* Стили для загрузки */
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-neutral-300 border-t-primary-500;
+  }
+  
+  /* Стили для скелетона загрузки */
+  .skeleton {
+    @apply animate-pulse bg-neutral-200 rounded;
+  }
+  
+  /* Стили для рейтинга */
+  .rating-stars {
+    @apply flex items-center space-x-1;
+  }
+  
+  .star {
+    @apply text-yellow-400;
+  }
+  
+  .star-empty {
+    @apply text-neutral-300;
+  }
+}
+
+/* Утилитарные стили */
+@layer utilities {
+  /* Утилиты для обрезки текста */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  
+  /* Утилиты для градиентов */
+  .gradient-primary {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  }
+  
+  .gradient-secondary {
+    background: linear-gradient(135deg, #f3741d 0%, #e45a12 100%);
+  }
+  
+  /* Утилиты для анимаций */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  /* Утилиты для доступности */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* Утилиты для фокуса */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+}
+
+/* Кастомные анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .product-card-image {
+    @apply h-40;
+  }
+  
+  .modal-content {
+    @apply max-w-sm;
+  }
+  
+  .map-container {
+    @apply h-64;
+  }
+}
+
+/* Стили для темной темы (будущая функциональность) */
+@media (prefers-color-scheme: dark) {
+  /* Здесь будут стили для темной темы */
+}
+
+/* Стили для печати */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+} 
